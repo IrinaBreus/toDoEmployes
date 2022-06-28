@@ -31,6 +31,23 @@ class App extends Component {
     }))
   }
 
+  deleteItem = (id) => {
+    this.setState(({data}) => ({
+      data: data.filter(elem => elem.id !== id)
+    }))
+  }
+
+  onChangeSalary = (id, value) => {
+    this.setState(({data}) => ({
+      data: data.map(elem => {
+        if (elem.id === id) {
+          return {...elem, salary: value.replace(/\D/g, '')}
+        }
+        return elem
+      })
+    }))
+  }
+
   render() {
 
     const {data} = this.state;
@@ -45,7 +62,9 @@ class App extends Component {
           
           <EmployeesList
               data={data}
-              onToggleProp={this.onToggleProp}/>
+              onToggleProp={this.onToggleProp}
+              onDelete={this.deleteItem}
+              onChangeSalary={this.onChangeSalary}/>
           <EmployeesAddForm/>
       </div>
     );
