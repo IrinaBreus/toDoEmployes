@@ -71,7 +71,8 @@ class App extends Component {
     const {data} = this.state;
     return (
       <div className="app">
-          <AppInfo />
+          <AppInfo 
+          data={data}/>
   
           <div className="search-panel">
               <SearchPanel/>
