@@ -20,6 +20,8 @@ class App extends Component {
     }
   }
 
+  newId = 4;
+
   onToggleProp = (id, prop) => {
     this.setState(({data}) => ({
       data: data.map(elem => {
@@ -48,6 +50,22 @@ class App extends Component {
     }))
   }
 
+  addElem = (name, salary) => {
+    const elem = {
+      name,
+      salary,
+      id: this.newId,
+      increase: false,
+      rise: false
+    }
+
+    this.newId++;
+
+    this.setState(({data}) => ({
+      data: [...data, elem]
+    }))
+  }
+
   render() {
 
     const {data} = this.state;
@@ -65,7 +83,8 @@ class App extends Component {
               onToggleProp={this.onToggleProp}
               onDelete={this.deleteItem}
               onChangeSalary={this.onChangeSalary}/>
-          <EmployeesAddForm/>
+          <EmployeesAddForm
+              onAddElem={this.addElem}/>
       </div>
     );
   }
